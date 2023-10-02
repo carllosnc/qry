@@ -66,6 +66,29 @@ class _ListOfDataState extends State<ListOfData> with QryGet<ListOfData, Todo> {
 }
 ```
 
+## getData()
+> getData is a function that makes a get request to an endpoint and returns the response
+
+**Arguments:**
+
+| Name       | Type       | Default | Description                                                                  |
+| ---------- | ---------- | ------- | ---------------------------------------------------------------------------- |
+| `endpoint` | `string`   | `null`  | url of the endpoint                                                          |
+| `adapter`  | `Function` | `null`  | is a function that converts the json response to a model, e.g. Todo.fromJson |
+
+
+## States
+
+| Name           | Type               | Default | Description                                                    |
+| -------------- | ------------------ | ------- | -------------------------------------------------------------- |
+| `isloading`    | `bool`             | `true`  | is true when request is loading                                |
+| `hasError`     | `bool`             | `false` | is true when request is completed with error                   |
+| `isSuccess`    | `bool`             | `false` | is true when request is completed with success                 |
+| `statusCode`   | `String`           | `null`  | http status code, ex: 200, 400, 404                            |
+| `errorMessage` | `String `          | `null`  | show http error message, ex: "not found", "unauthorized" etc.. |
+| `data`         | `dynamic(generic)` | `null`  | result(single value) when request complete with success        |
+| `dataList`     | `dynamic(generic)` | `null`  | result(list of values) when request complete with success      |
+
 ---
 
 Carlos Costa @ 2023
