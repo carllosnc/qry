@@ -1,6 +1,11 @@
 # Qry
 
->Do HTTP requests using mixins
+>Do HTTP requests based on mixins
+
+- ✅ **QryGet**: get data
+- 🚧 **QryPost**: send data
+- 🚧 **QryPut**: update data
+- 🚧 **QryDelete**: delete data
 
 ```dart
 class ListOfData extends StatefulWidget {
@@ -66,10 +71,16 @@ class _ListOfDataState extends State<ListOfData> with QryGet<ListOfData, Todo> {
 }
 ```
 
+## Examples
+- [Get a list of Todos](https://github.com/C4co/qry/blob/master/example/lib/cases/list_of_data.dart)
+- [Get a single Todo](https://github.com/C4co/qry/blob/master/example/lib/cases/single_data.dart)
+- [Get private data](https://github.com/C4co/qry/blob/master/example/lib/cases/private_data.dart)
+
+
 ## getData()
 > getData is a function that makes a get request to an endpoint and returns the response
 
-**Arguments:**
+**Parameters:**
 
 | Name       | Type       | Default | Description                                                                  |
 | ---------- | ---------- | ------- | ---------------------------------------------------------------------------- |
