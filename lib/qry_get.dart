@@ -1,12 +1,12 @@
-library qry;
-
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
+import './http_status_code.dart';
+import './qry_exception.dart';
+import './http_message.dart';
 
 typedef Adapter<T> = T Function(Map<String, dynamic> json);
 
-/// Qry is a mixin that provides a function to make http requests
 mixin QryGet<T extends StatefulWidget, Model> on State<T> {
   /// is true when the request is loading
   bool isLoading = true;
@@ -21,37 +21,13 @@ mixin QryGet<T extends StatefulWidget, Model> on State<T> {
   String? statusCode;
 
   /// is the error message of the response
-  String? errorMessage;
+  QryException? error;
 
   /// is the data of the response
   Model? data;
 
   /// is the list of data of the response
   List<Model>? dataList;
-
-  // mapping error status code to error message
-  String errorMapping(dynamic response) {
-    switch (response.statusCode) {
-      case 400:
-        return 'Bad Request';
-      case 401:
-        return 'Unauthorized';
-      case 403:
-        return 'Forbidden';
-      case 404:
-        return 'Not Found';
-      case 500:
-        return 'Internal Server Error';
-      case 502:
-        return 'Bad Gateway';
-      case 503:
-        return 'Service Unavailable';
-      case 504:
-        return 'Gateway Timeout';
-      default:
-        return 'Something went wrong';
-    }
-  }
 
   /// getData is a function that makes a get request to an endpoint and returns the response
   ///
@@ -67,50 +43,54 @@ mixin QryGet<T extends StatefulWidget, Model> on State<T> {
     required Adapter<Model> adapter,
     Map<String, String> headers = const {},
   }) async {
-    var response = await http.get(Uri.parse(endpoint), headers: headers);
-    var body = jsonDecode(response.body);
-    bool isList = body is List;
-    statusCode = response.statusCode.toString();
-    List<Model> items = [];
-    Model? item;
+    try {
+      final response = await http.get(Uri.parse(endpoint), headers: headers);
 
-    if (response.statusCode != 200) {
+      // throw an exception if the request is not successful
+      if (!successRange.contains(response.statusCode)) {
+        throw QryException(
+          message: httpErrorMessage(response),
+          statusCode: response.statusCode.toString(),
+          description: jsonDecode(response.body),
+        );
+      }
+
+      var body = jsonDecode(response.body);
+      bool isList = body is List;
+      statusCode = response.statusCode.toString();
+      List<Model> items = [];
+      Model? item;
+
+      //check if body is a list
+      if (isList) {
+        // if it is, loop through it and add each element to the elements list
+        for (var element in body) {
+          items.add(adapter(element));
+        }
+      } else {
+        // if body is not a list, then it is a single element
+        item = adapter(body);
+      }
+
       setState(() {
         isLoading = false;
-        hasError = true;
-        isSuccess = false;
+        isSuccess = true;
+        hasError = false;
+        error = null;
         statusCode = response.statusCode.toString();
-        errorMessage = errorMapping(response);
+        data = item;
+        dataList = items;
+      });
+    } on QryException catch (e) {
+      setState(() {
+        isLoading = false;
+        isSuccess = false;
+        hasError = true;
+        error = e;
+        statusCode = null;
         data = null;
         dataList = null;
       });
-
-      http.Client().close();
-
-      return;
     }
-
-    //check if body is a list
-    if (isList) {
-      // if it is, loop through it and add each element to the elements list
-      for (var element in body) {
-        items.add(adapter(element));
-      }
-    } else {
-      // if body is not a list, then it is a single element
-      item = adapter(body);
-    }
-
-    setState(() {
-      hasError = false;
-      isLoading = false;
-      isSuccess = true;
-      errorMessage = null;
-      statusCode = '200';
-      data = item;
-      dataList = items;
-    });
-
-    http.Client().close();
   }
 }
