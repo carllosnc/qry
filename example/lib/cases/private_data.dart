@@ -39,7 +39,7 @@ class _PrivateDataState extends State<PrivateData>
           title: const Text('Private Data'),
         ),
         body: Center(
-          child: Text("${statusCode!} - ${errorMessage!}"),
+          child: Text(error!.message),
         ),
       );
     }

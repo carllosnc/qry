@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:qry_example/home.dart';
 import './cases/list_of_data.dart';
 import './cases/single_data.dart';
-import 'cases/private_data.dart';
+import './cases/private_data.dart';
+import './cases/get_error.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
         '/list-of-data': (context) => const ListOfData(),
         '/single-data': (context) => const SingleData(),
         '/private-data': (context) => const PrivateData(),
+        '/get-error': (context) => const GetError(),
       },
     );
   }

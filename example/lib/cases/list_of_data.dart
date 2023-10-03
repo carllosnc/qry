@@ -33,7 +33,7 @@ class _ListOfDataState extends State<ListOfData> with QryGet<ListOfData, Todo> {
     if (hasError) {
       return Scaffold(
         body: Center(
-          child: Text(errorMessage!),
+          child: Text(error!.message),
         ),
       );
     }

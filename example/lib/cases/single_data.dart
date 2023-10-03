@@ -34,7 +34,7 @@ class _SingleDataState extends State<SingleData> with QryGet<SingleData, Todo> {
     if (hasError) {
       return Scaffold(
         body: Center(
-          child: Text(errorMessage!),
+          child: Text(error!.message),
         ),
       );
     }
