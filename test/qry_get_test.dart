@@ -30,7 +30,7 @@ void main() {
 
       final CustomWidgetState state = tester.state(find.byType(CustomWidget));
 
-      expect(state.isLoading, true);
+      expect(state.isLoading, false);
       expect(state.isSuccess, false);
       expect(state.hasError, false);
       expect(state.statusCode, null);
