@@ -8,7 +8,7 @@ import 'typedef.dart';
 
 mixin QryGet<T extends StatefulWidget, Model> on State<T> {
   /// is true when the request is loading
-  bool isLoading = true;
+  bool isLoading = false;
 
   /// is true when the request is successful
   bool isSuccess = false;
@@ -43,6 +43,10 @@ mixin QryGet<T extends StatefulWidget, Model> on State<T> {
     Map<String, String> headers = const {},
   }) async {
     try {
+      setState(() {
+        isLoading = true;
+      });
+
       final response = await http.get(Uri.parse(endpoint), headers: headers);
 
       // throw an exception if the request is not successful
