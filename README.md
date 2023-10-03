@@ -92,15 +92,15 @@ class _ListOfDataState extends State<ListOfData> with QryGet<ListOfData, Todo> {
 
 ## States
 
-| Name         | Type           | Default | Description                                               |
-| ------------ | -------------- | ------- | --------------------------------------------------------- |
-| `isloading`  | `bool`         | `true`  | is true when request is loading                           |
-| `hasError`   | `bool`         | `false` | is true when request is completed with error              |
-| `isSuccess`  | `bool`         | `false` | is true when request is completed with success            |
-| `statusCode` | `String`       | `null`  | http status code, ex: 200, 400, 404                       |
-| `error`      | `QryException` | `null`  | error message, status code and description                |
-| `data`       | `dynamic`      | `null`  | result(single value) when request complete with success   |
-| `dataList`   | `dynamic`      | `null`  | result(list of values) when request complete with success |
+| Name         | Type           | Default | Description                                     |
+| ------------ | -------------- | ------- | ----------------------------------------------- |
+| `isloading`  | `bool`         | `true`  | is true when request is loading                 |
+| `hasError`   | `bool`         | `false` | is true when request is completed with error    |
+| `isSuccess`  | `bool`         | `false` | is true when request is completed with success  |
+| `statusCode` | `String`       | `null`  | http status code, ex: 200, 400, 404             |
+| `error`      | `QryException` | `null`  | error message, status code and description      |
+| `data`       | `dynamic`      | `null`  | body of response                                |
+| `dataList`   | `dynamic`      | `null`  | lits of objects when body of response is a list |
 
 ---
 
