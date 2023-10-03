@@ -41,6 +41,8 @@ mixin QryPost<T extends StatefulWidget, Model> on State<T> {
   /// [payload] is the data to be sent with the request
   ///
   /// [onSuccess] is a function that is called when the request is successful
+  ///
+  /// [onError] is a function that is called when the request is unsuccessful
   Future<void> postData({
     required String endpoint,
     required Adapter<Model> adapter,
