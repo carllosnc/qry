@@ -1,11 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import './http_status_code.dart';
-import './qry_exception.dart';
-import './http_message.dart';
-
-typedef Adapter<T> = T Function(Map<String, dynamic> json);
+import 'http_status_code.dart';
+import 'qry_exception.dart';
+import 'http_message.dart';
+import 'typedef.dart';
 
 mixin QryGet<T extends StatefulWidget, Model> on State<T> {
   /// is true when the request is loading
