@@ -78,6 +78,7 @@ class _ListOfDataState extends State<ListOfData> with QryGet<ListOfData, Todo> {
 - [Get private data](https://github.com/C4co/qry/blob/master/example/lib/cases/private_data.dart)
 - [Show error messages: not found](https://github.com/C4co/qry/blob/master/example/lib/cases/error_components/not_found.dart)
 - [Show error messages: unauthorized](https://github.com/C4co/qry/blob/master/example/lib/cases/error_components/unauthorized.dart)
+- [Senda data](https://github.com/C4co/qry/blob/master/example/lib/cases/send_data.dart)
 
 ## QryGet: getData()
 > getData is a function that makes a get request to an endpoint
