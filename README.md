@@ -17,6 +17,7 @@ class ListOfData extends StatefulWidget {
 
 //use mixin and pass the data type
 class _ListOfDataState extends State<ListOfData> with QryGet<ListOfData, Todo> {
+
   @override
   void initState() {
     super.initState();
@@ -45,7 +46,7 @@ class _ListOfDataState extends State<ListOfData> with QryGet<ListOfData, Todo> {
     if (hasError) {
       return Scaffold(
         body: Center(
-          child: Text(errorMessage!),
+          child: Text(error!.message),
         ),
       );
     }
@@ -75,30 +76,31 @@ class _ListOfDataState extends State<ListOfData> with QryGet<ListOfData, Todo> {
 - [Get a list of Todos](https://github.com/C4co/qry/blob/master/example/lib/cases/list_of_data.dart)
 - [Get a single Todo](https://github.com/C4co/qry/blob/master/example/lib/cases/single_data.dart)
 - [Get private data](https://github.com/C4co/qry/blob/master/example/lib/cases/private_data.dart)
+- [Show error messages: not found](https://github.com/C4co/qry/blob/master/example/lib/cases/error_components/not_found.dart)
+- [Show error messages: unauthorized](https://github.com/C4co/qry/blob/master/example/lib/cases/error_components/unauthorized.dart)
 
-
-## getData()
+## QryGet: getData()
 > getData is a function that makes a get request to an endpoint and returns the response
 
 **Parameters:**
 
-| Name       | Type       | Default | Description                                                                  |
-| ---------- | ---------- | ------- | ---------------------------------------------------------------------------- |
-| `endpoint` | `string`   | `null`  | url of the endpoint                                                          |
-| `adapter`  | `Function` | `null`  | is a function that converts the json response to a model, e.g. Todo.fromJson |
-
+| Name       | Type                  | Default | Description                                                                  |
+| ---------- | --------------------- | ------- | ---------------------------------------------------------------------------- |
+| `endpoint` | `string`              | `null`  | url of the endpoint                                                          |
+| `adapter`  | `Function`            | `null`  | is a function that converts the json response to a model, e.g. Todo.fromJson |
+| `headers`  | `Map<String, String>` | `null`  | map of headers to be sent with the request                                   |
 
 ## States
 
-| Name           | Type               | Default | Description                                                    |
-| -------------- | ------------------ | ------- | -------------------------------------------------------------- |
-| `isloading`    | `bool`             | `true`  | is true when request is loading                                |
-| `hasError`     | `bool`             | `false` | is true when request is completed with error                   |
-| `isSuccess`    | `bool`             | `false` | is true when request is completed with success                 |
-| `statusCode`   | `String`           | `null`  | http status code, ex: 200, 400, 404                            |
-| `errorMessage` | `String `          | `null`  | show http error message, ex: "not found", "unauthorized" etc.. |
-| `data`         | `dynamic(generic)` | `null`  | result(single value) when request complete with success        |
-| `dataList`     | `dynamic(generic)` | `null`  | result(list of values) when request complete with success      |
+| Name         | Type           | Default | Description                                               |
+| ------------ | -------------- | ------- | --------------------------------------------------------- |
+| `isloading`  | `bool`         | `true`  | is true when request is loading                           |
+| `hasError`   | `bool`         | `false` | is true when request is completed with error              |
+| `isSuccess`  | `bool`         | `false` | is true when request is completed with success            |
+| `statusCode` | `String`       | `null`  | http status code, ex: 200, 400, 404                       |
+| `error`      | `QryException` | `null`  | error message, status code and description                |
+| `data`       | `dynamic`      | `null`  | result(single value) when request complete with success   |
+| `dataList`   | `dynamic`      | `null`  | result(list of values) when request complete with success |
 
 ---
 
