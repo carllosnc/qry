@@ -33,7 +33,7 @@ class _ListOfDataState extends State<ListOfData> with QryGet<ListOfData, Todo> {
   @override
   Widget build(BuildContext context) {
 
-    //check is request is loading
+    //check if request is loading
     if (isLoading) {
       return const Scaffold(
         body: Center(
