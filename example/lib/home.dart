@@ -40,6 +40,12 @@ class _HomeState extends State<Home> {
               Navigator.pushNamed(context, '/get-error');
             },
           ),
+          ListTile(
+            title: const Text('Send Data'),
+            onTap: () {
+              Navigator.pushNamed(context, '/send-data');
+            },
+          ),
         ],
       ),
     );
