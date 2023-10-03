@@ -34,7 +34,7 @@ void main() {
       expect(state.isSuccess, false);
       expect(state.hasError, false);
       expect(state.statusCode, null);
-      expect(state.errorMessage, null);
+      expect(state.error, null);
       expect(state.data, null);
       expect(state.dataList, null);
     },
@@ -54,23 +54,6 @@ void main() {
       final CustomWidgetState state = tester.state(find.byType(CustomWidget));
 
       expect(state.getData, isNotNull);
-    },
-  );
-
-  testWidgets(
-    'Check if errorMapping function is provided',
-    (WidgetTester tester) async {
-      await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(
-            body: CustomWidget(),
-          ),
-        ),
-      );
-
-      final CustomWidgetState state = tester.state(find.byType(CustomWidget));
-
-      expect(state.errorMapping, isNotNull);
     },
   );
 }
