@@ -74,6 +74,16 @@ class _ListOfDataState extends State<ListOfData> with QryGet<ListOfData, Todo> {
 }
 ```
 
+### Install
+
+`pubspec.yaml`
+```yml
+dependencies:
+  imgy:
+    git:
+      url: https://github.com/C4co/qry.git
+```
+
 ## Examples
 - [Get a list of Todos](https://github.com/C4co/qry/blob/master/example/lib/cases/list_of_data.dart)
 - [Get a single Todo](https://github.com/C4co/qry/blob/master/example/lib/cases/single_data.dart)
