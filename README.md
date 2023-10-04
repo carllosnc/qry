@@ -1,5 +1,7 @@
 # Qry
 
+[![Qry](https://github.com/C4co/qry/actions/workflows/dart.yml/badge.svg)](https://github.com/C4co/qry/actions/workflows/dart.yml)
+
 >Do HTTP requests based on mixins
 
 - ✅ **QryGet**: get data
